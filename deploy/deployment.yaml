@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: falcon-api
+  labels:
+    name: falcon-api
+spec:
+  selector:
+    matchLabels:
+      app: falcon-api
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: falcon-api
+    spec:
+      containers:
+      - image:  us.gcr.io/fabled-access-146720/falconsamplerestapi
+        name:  falcon-api
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128M"
+        ports:
+        - containerPort: 8000
+        
